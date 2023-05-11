@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const UserForm = () => {
     const handleUser = event => {
@@ -9,7 +10,26 @@ const UserForm = () => {
         const mobile = form.mobile.value;
         const address = form.address.value;
         const user = { name, mobile, address };
-        console.log(name, mobile, address);
+        console.log(user);
+
+        fetch('http://localhost:5000/users',{
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if(data.insertedId){
+                    alert('User added successfully');
+                    form.reset()
+                }
+                else(error) =>{
+                    console.log(error);
+                }
+            })
     }
     return (
         <div>
@@ -25,6 +45,7 @@ const UserForm = () => {
                     {/* <input className='p-2 bg-slate-700 mt-2' type="submit" value="Submit" /> <br /> */}
                     <button type='submit' className='bg-green-900 p-2 mt-2'> Submit</button>
                 </form>
+                <Link to='/userdata'><button className='bg-orange-600 p-2 rounded m-2'>See All Users</button></Link>
             </div>
         </div>
     );

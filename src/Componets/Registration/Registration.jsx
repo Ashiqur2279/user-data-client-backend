@@ -4,7 +4,7 @@ import React from 'react';
 const Registration = () => {
     return (
         <div>
-            This is registration page
+            <h1 className='text-3xl text-center'>This is Registration Page</h1>
         </div>
     );
 };

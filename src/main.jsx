@@ -11,12 +11,18 @@ import {
 import Login from './Componets/Login/Login.jsx';
 import Registration from './Componets/Registration/Registration.jsx';
 import UserForm from './Componets/UserForm/UserForm.jsx';
+import Home from './Componets/Home/Home.jsx';
+import UserData from './Componets/UserData/UserData.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
     children:[
+      {
+        path: '/',
+        element: <Home></Home>
+      },
       {
         path: '/login',
         element: <Login></Login>
@@ -28,6 +34,11 @@ const router = createBrowserRouter([
       {
         path: '/userform',
         element: <UserForm></UserForm>
+      },
+      {
+        path: '/userdata',
+        element: <UserData></UserData>,
+        loader: () => fetch ('http://localhost:5000/users')
       }
     ]
   },
